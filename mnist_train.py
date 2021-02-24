@@ -5,8 +5,8 @@ from models import EfficientCapsNet
 
 # some parameters
 model_name = 'MNIST'
-plot = False
-gpu_no = 1
+plot = 1
+gpu_no = -1
 
 if gpu_no >= 0:
     gpus = tf.config.experimental.list_physical_devices('GPU')
@@ -14,6 +14,10 @@ if gpu_no >= 0:
     tf.config.experimental.set_memory_growth(gpus[gpu_no], True)
 
 dataset = Dataset(model_name, config_path='config.json')
+print("========================")
+print(dataset.X_train.shape)
+print(dataset.X_test.shape)
+print("========================")
 
 if plot:
     n_images = 20 # number of images to be plotted
