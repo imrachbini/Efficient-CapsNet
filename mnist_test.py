@@ -1,13 +1,23 @@
+import argparse
 import tensorflow as tf
 from utils import Dataset, plotImages, plotWrongImages
 from models import EfficientCapsNet
 
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--plot', action='store_true')
+    parser.add_argument('--gpu', type=int, default=-1)
+    parser.add_argument('--model_path', type=str, default=None)
+
+    return parser.parse_args()
+
 
 # some parameters
+args = parse_args()
 model_name = 'MNIST'
-custom_path = './trained_model/original_capsnet_MNIST_new_train.h5'
-plot = False
-gpu_no = 1
+custom_path = args.model_path
+plot = args.plot
+gpu_no = args.gpu
 
 if gpu_no >= 0:
     gpus = tf.config.experimental.list_physical_devices('GPU')

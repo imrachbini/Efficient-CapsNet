@@ -1,12 +1,22 @@
+import argparse
 import tensorflow as tf
 from utils import Dataset, plotImages, plotWrongImages, plotHistory
 from models import EfficientCapsNet
 
 
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--plot', action='store_true')
+    parser.add_argument('--gpu', type=int, default=-1)
+
+    return parser.parse_args()
+
+
 # some parameters
+args = parse_args()
 model_name = 'MNIST'
-plot = 1
-gpu_no = -1
+plot = args.plot
+gpu_no = args.gpu
 
 if gpu_no >= 0:
     gpus = tf.config.experimental.list_physical_devices('GPU')
