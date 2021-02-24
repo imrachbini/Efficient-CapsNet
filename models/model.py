@@ -170,8 +170,10 @@ class EfficientCapsNet(Model):
             steps = 10*int(dataset.y_train.shape[0] / self.config['batch_size'])
         else:
             self.model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=self.config['lr']),
-              loss=[marginLoss, 'mse'],
-              loss_weights=[1., self.config['lmd_gen']],
+            #   loss=[marginLoss, 'mse'],
+            #   loss_weights=[1., self.config['lmd_gen']],
+              loss=['mse', 'mse'],
+              loss_weights=[self.config['lmd_gen']/2, self.config['lmd_gen']/2],
               metrics={'Efficient_CapsNet': 'accuracy'})
             steps=None
 
