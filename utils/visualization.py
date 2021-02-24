@@ -16,7 +16,7 @@
 import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
-from ipywidgets import interact, widgets, interactive
+# from ipywidgets import interact, widgets, interactive
 import os
 import pandas as pd
 

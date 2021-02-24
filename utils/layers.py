@@ -121,10 +121,11 @@ class PrimaryCaps(tf.keras.layers.Layer):
         
     def build(self, input_shape):    
         self.DW_Conv2D = tf.keras.layers.Conv2D(self.F, self.K, self.s,
-                                             activation='linear', groups=self.F, padding='valid')
+                                             activation='linear', padding='valid')
+                                             # groups=self.F,
 
         self.built = True
-    
+
     def call(self, inputs):      
         x = self.DW_Conv2D(inputs)      
         x = tf.keras.layers.Reshape((self.N, self.D))(x)
